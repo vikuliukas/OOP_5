@@ -29,6 +29,9 @@ Idiegimas (Unix kompiuteryje).
 - Surasti tekste esančius URL adresus.
 
 ## Versiju istorija
+# [v1.5](https://github.com/vikuliukas/OOP_5/releases/tag/v1.5)
+- Egzamino užd. 
+
 # [v1.1](https://github.com/vikuliukas/OOP_5/releases/tag/v1.1)
 *Koreguota*
 
