@@ -9,7 +9,15 @@ void zodziu_paieska( std::map<std::string, std::vector<int>> & zodziai, std::vec
         std::istringstream iss(eil);
         while(iss >> t){
             if(ar_nuoroda(t) == 1){
-                nuorodos.push_back(t);
+                bool yra = 0;
+                for(size_t i = 0; i < nuorodos.size(); i++){
+                    if( t == nuorodos[i]){
+                        yra = 1;
+                    }
+                }
+                if(yra == 0){
+                    nuorodos.push_back(t);   
+                }
             }
             else{
                 t = i_mazas_raides(t);
@@ -24,7 +32,7 @@ void zodziu_paieska( std::map<std::string, std::vector<int>> & zodziai, std::vec
     df.close();
 }
 
-void spausdinimas(std::map<std::string, std::vector<int>> & zodziai, std::vector<std::string> & nuorodos){
+void spausdinimas(std::map<std::string, std::vector<int>> & zodziai, int ilg_zod, std::vector<std::string> & nuorodos){
     std::ofstream rf("rezultatas.txt");
     if(!nuorodos.empty()){
         rf << "Nuorodos: \n";
@@ -86,6 +94,16 @@ std::string istinti_simbolius(std::string & a){
     }
 
     return a;
+}
+
+int ilgiausias_zodis(std::map<std::string, std::vector<int>> & zodziai){
+    unsigned int max = 6; // 5 nes max zodis negali buti trumpesnis nei pats zodis "zodis:"
+    for (auto p = zodziai.begin(); p != zodziai.end(); p++){
+        if(max < p->first.length()){
+            max = p->first.length();
+        }
+    }
+    return max;
 }
 
 bool ar_nuoroda(std::string a){

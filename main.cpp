@@ -6,7 +6,8 @@ int main(){
     std::vector<std::string> nuorodos;
 
     zodziu_paieska(zodziai, nuorodos);
-    spausdinimas(zodziai, nuorodos);
+    int ilg_zod = ilgiausias_zodis(zodziai);
+    spausdinimas(zodziai, ilg_zod, nuorodos);
 
     return 0;
 }

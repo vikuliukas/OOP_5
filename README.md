@@ -29,6 +29,47 @@ Idiegimas (Unix kompiuteryje).
 - Surasti tekste esančius URL adresus.
 
 ## Versiju istorija
+# [v1.1](https://github.com/vikuliukas/OOP_5/releases/tag/v1.1)
+*Koreguota*
+
+- Koreguotas `ReadMe` failas.
+- Funkcija `zodziu_paieska` dabar dar ir patikrina ar nuoroda jau yra konteineryje `std::vector`, kuriame saugomos visos nuorodos.
+
+## papildyta funkcija zodziu_paieska
+```c++
+void zodziu_paieska( std::map<std::string, std::vector<int>> & zodziai, std::vector<std::string> & nuorodos){
+    std::ifstream df("tekstas.txt");
+    std::string eil, t; // t - tarpinis kintamasis.
+    int i = 1; // i - eilutes numeris.
+    while(!df.eof()){
+        std::getline(df, eil);
+        std::istringstream iss(eil);
+        while(iss >> t){
+            if(ar_nuoroda(t) == 1){
+                bool yra = 0;
+                for(size_t i = 0; i < nuorodos.size(); i++){
+                    if( t == nuorodos[i]){
+                        yra = 1;
+                    }
+                }
+                if(yra == 0){
+                    nuorodos.push_back(t);   
+                }
+            }
+            else{
+                t = i_mazas_raides(t);
+                t = istinti_simbolius(t);
+                if(!t.empty()){
+                zodziai[t].push_back(i);
+                }
+            }
+        }
+        i++;
+    }
+    df.close();
+}
+```
+
 
 # [v1.0](https://github.com/vikuliukas/OOP_5/releases/tag/v1.0)
 
